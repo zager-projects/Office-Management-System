@@ -6,12 +6,19 @@ import Button from './Button'
 function Navbar() {
   return (
     <>
-    <div className='h-[10vh] flex items-center'>
-        <p className='uppercase font-bold text-[2vw]'><span style={{color:secondaryColor}}>Office</span> management system</p>
-        <div>
+    <div className='h-[10vh] flex items-center justify-between px-10'> 
+
+
+
+        
+        {/* <p className='uppercase font-bold text-[2vw]'><span style={{color:secondaryColor}}>Office</span> management system</p> */}
+        <p className='uppercase font-bold text-3xl'><span style={{color:secondaryColor}}>O</span>ms</p>
+        <div className='flex md:gap-4 gap-2'>
             <NavLink to='/register'>
-                {/* <button style={{backgroundColor:secondaryColor}} className='text-white px-4 py-2 rounded-lg font-semibold'>Register</button> */}
                 <Button value="Register"/>
+            </NavLink>
+            <NavLink to='/login'>
+                <Button value="Login"/>
             </NavLink>
         </div>
     </div>

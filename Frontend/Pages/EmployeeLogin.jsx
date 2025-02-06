@@ -61,7 +61,7 @@ function EmployeeLogin() {
               value={role}
             //   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
             onChange={handleRoleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             >
               <option value="">Select your role</option>
               <option value="admin">Admin</option>
@@ -79,7 +79,7 @@ function EmployeeLogin() {
               placeholder="Enter your ID"
               value={formData.id}
               onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
@@ -92,14 +92,14 @@ function EmployeeLogin() {
               placeholder="Enter your password"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
           <button
             type="submit"
             style={{ backgroundColor: primaryColor }}
-            className="w-full  text-white py-2 px-4 rounded-md hover:opacity-90 hover:cursor-pointer  focus:outline-none focus:ring-2 focus:ring-blue-500 mt-6"
+            className="w-full  text-white py-2 px-4 rounded-md hover:opacity-90 hover:cursor-pointer  focus:outline-none focus:ring-2 focus:ring-purple-400"
           >
             Login
           </button>

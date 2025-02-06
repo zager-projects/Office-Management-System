@@ -1,11 +1,11 @@
 import React from 'react'
-import {primaryColor,secondaryColor} from '../Constants/theme'
-import Navbar from '../Components/Navbar'
+import Register from './Register'
 
 function HomePage() {
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
+    <Register/>
     </>
   )
 }

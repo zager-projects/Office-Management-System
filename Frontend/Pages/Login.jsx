@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import Navbar from '../Components/Navbar'
-import { Navigate, NavLink, useNavigate } from 'react-router-dom'
-import { primaryColor,secondaryColor } from '../Constants/theme'
-import Button from '../Components/Button'
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Button from '../Components/Button';
+import { primaryColor, secondaryColor } from '../Constants/theme';
 
 
 
@@ -61,7 +60,7 @@ function Login() {
               value={role}
             //   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
             onChange={handleRoleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             >
               <option value="">Select your role</option>
               <option value="admin">Admin</option>
@@ -79,7 +78,7 @@ function Login() {
               placeholder="Enter your ID"
               value={formData.id}
               onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
@@ -92,15 +91,14 @@ function Login() {
               placeholder="Enter your password"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
           <button
             type="submit"
             style={{ backgroundColor: primaryColor }}
-            className="w-full  text-white py-2 px-4 rounded-md hover:opacity-90 hover:cursor-pointer  focus:outline-none focus:ring-2 focus:ring-blue-500 mt-6"
-          >
+            className="w-full  text-white py-2 px-4 rounded-md hover:opacity-90 hover:cursor-pointer  focus:outline-none focus:ring-2 focus:ring-purple-400 mt-6">
             Login
           </button>
         </form>

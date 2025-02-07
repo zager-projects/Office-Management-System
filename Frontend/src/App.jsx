@@ -8,6 +8,7 @@ import Register from '../Pages/Register'
 import './App.css'
 import AdminDashboard from '../Pages/AdminDashboard'
 import EmployeeAddForm from '../Pages/EmployeeAddFrom'
+import EmployeeDashboard from '../Pages/EmployeeDashboard'
 
 function App() {
 
@@ -23,6 +24,9 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         {/* <Route path="/employeeaddform" element={<EmployeeAddForm />} /> */}
         <Route path="/admin/*" element={<AdminDashboard />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/employeeaddform" element={<EmployeeAddForm />} />
+        <Route path="/employeedashboard" element={<EmployeeDashboard />} />
       </Routes>
     </>
   )

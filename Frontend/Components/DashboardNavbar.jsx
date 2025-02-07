@@ -8,6 +8,7 @@ function DashboardNavbar({first,second}) {
             {/* <p className='uppercase font-bold text-[2vw]'><span style={{color:secondaryColor}}>Office</span> management system</p> */}
         <p className='uppercase font-bold text-3xl'><span style={{color:secondaryColor}}>{first}</span>{second}</p>
     {/* </div> */}
+    {/* </div> */}
     </>
   )
 }

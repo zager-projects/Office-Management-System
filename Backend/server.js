@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import taskroutes from './routes/taskRoutes.js'
-import employeeRouter from './routes/employeeRoutes.js'
+// import employeeRouter from './routes/employeeRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 
 dotenv.config();
@@ -18,7 +18,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/task", taskroutes);
-app.use("api/employee",employeeRouter);
+// app.use("api/employee",employeeRouter);
 app.use("/api/admin", adminRoutes);
 
 // Start Server

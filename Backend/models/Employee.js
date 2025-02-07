@@ -145,4 +145,4 @@ const employeeSchema = new mongoose.Schema({
 
 const EmployeeModel = mongoose.model('Employee', employeeSchema);
 
-module.exports = EmployeeModel;
+export default EmployeeModel;

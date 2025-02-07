@@ -6,6 +6,7 @@ import Login from '../Pages/Login'
 import ManagerLogin from '../Pages/ManagerLogin'
 import Register from '../Pages/Register'
 import './App.css'
+import AdminDashboard from '../Pages/AdminDashboard'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/manager-login" element={<ManagerLogin />} />
         <Route path="/employee-login" element={<EmployeeLogin />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
       </Routes>
     </>
   )

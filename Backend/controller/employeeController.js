@@ -2,7 +2,7 @@ import EmployeeModel from "../models/Employee.js"; // Import Employee Schema
 import bcrypt from "bcrypt"; // Import bcrypt for password hashing
 
 // ✅ Create Employee
-const createEmployee = async (req, res) => {
+export const createEmployee = async (req, res) => {
   try {
     const { password, ...employeeData } = req.body;
 
@@ -18,7 +18,7 @@ const createEmployee = async (req, res) => {
 };
 
 // ✅ Get All Employees
-const getAllEmployees = async (req, res) => {
+export const getAllEmployees = async (req, res) => {
   try {
     const employees = await EmployeeModel.find();
     res.status(200).json({ success: true, employees });
@@ -28,7 +28,7 @@ const getAllEmployees = async (req, res) => {
 };
 
 // ✅ Get Single Employee by ID
-const getEmployeeById = async (req, res) => {
+export const getEmployeeById = async (req, res) => {
   try {
     const employee = await EmployeeModel.findById(req.params.id);
     if (!employee) return res.status(404).json({ success: false, message: "Employee not found" });
@@ -40,7 +40,7 @@ const getEmployeeById = async (req, res) => {
 };
 
 // ✅ Update Employee
-const updateEmployee = async (req, res) => {
+export const updateEmployee = async (req, res) => {
   try {
     const { password, ...updateData } = req.body;
 
@@ -57,7 +57,7 @@ const updateEmployee = async (req, res) => {
 };
 
 // ✅ Delete Employee
-    const  deleteEmployee = async (req, res) => {
+export const  deleteEmployee = async (req, res) => {
   try {
     const employee = await EmployeeModel.findByIdAndDelete(req.params.id);
     if (!employee) return res.status(404).json({ success: false, message: "Employee not found" });
@@ -68,4 +68,12 @@ const updateEmployee = async (req, res) => {
   }
 };
 
-export {createEmployee, getAllEmployees , getEmployeeById , updateEmployee, deleteEmployee} 
+// export default  {createEmployee, getAllEmployees , getEmployeeById , updateEmployee, deleteEmployee} 
+
+// export default {
+//     createEmployee,
+//     getAllEmployees,
+//     getEmployeeById,
+//     updateEmployee,
+//     deleteEmployee
+//   };

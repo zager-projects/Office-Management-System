@@ -1,11 +1,11 @@
-import Admin from "../models/AdminModel";
-import Employee from "../models/EmployeeModel";
+import Admin from "../models/AdminModel.js";
+import Employee from "../models/Employee.js";
 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 // ✅ Admin Registration
-exports.registerAdmin = async (req, res) => {
+export const registerAdmin = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -19,11 +19,12 @@ exports.registerAdmin = async (req, res) => {
     res.status(201).json({ message: "Admin registered successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
+    console.log(error.message)
   }
 };
 
 // ✅ Admin Login
-exports.loginAdmin = async (req, res) => {
+export const loginAdmin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -46,7 +47,7 @@ exports.loginAdmin = async (req, res) => {
 };
 
 // ✅ Only Admin Can Register New Employees
-exports.registerEmployee = async (req, res) => {
+export const registerEmployee = async (req, res) => {
   try {
     const { password, ...employeeData } = req.body;
     

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { primaryColor, secondaryColor } from '../Constants/theme';
 import Button from '../Components/Button';
@@ -67,14 +67,14 @@ function AdminLogin() {
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1 ">
               Role
             </label>
             <select
               value={role}
             //   onChange={(e) => setFormData({ ...formData, role: e.target.value })}
             onChange={handleRoleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             >
               <option value="">Select your role</option>
               <option value="admin">Admin</option>
@@ -112,7 +112,7 @@ function AdminLogin() {
           <button
             type="submit"
             style={{ backgroundColor: primaryColor }}
-            className="w-full  text-white py-2 px-4 rounded-md hover:opacity-90 hover:cursor-pointer  focus:outline-none focus:ring-2 focus:ring-blue-500 mt-6"
+            className="w-full  text-white py-2 px-4 rounded-md hover:opacity-90 hover:cursor-pointer  focus:outline-none focus:ring-2 focus:ring-purple-400"
           >
             Login
           </button>

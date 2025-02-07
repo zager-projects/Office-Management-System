@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { primaryColor, secondaryColor } from '../Constants/theme';
 import Button from '../Components/Button';
-import axios from 'axios';
+import { primaryColor, secondaryColor } from '../Constants/theme';
 
 
 function AdminLogin() {
@@ -93,7 +92,7 @@ function AdminLogin() {
               placeholder="Enter your ID"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
@@ -106,7 +105,7 @@ function AdminLogin() {
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 

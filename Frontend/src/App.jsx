@@ -7,7 +7,7 @@ import ManagerLogin from '../Pages/ManagerLogin'
 import Register from '../Pages/Register'
 import './App.css'
 import AdminDashboard from '../Pages/AdminDashboard'
-
+import EmployeeAddForm from '../Pages/EmployeeAddFrom'
 
 function App() {
 
@@ -21,6 +21,7 @@ function App() {
         <Route path="/manager-login" element={<ManagerLogin />} />
         <Route path="/employee-login" element={<EmployeeLogin />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/employeeaddform" element={<EmployeeAddForm />} />
       </Routes>
     </>
   )

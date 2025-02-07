@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../Components/Button';
@@ -6,17 +7,30 @@ import { primaryColor, secondaryColor } from '../Constants/theme';
 
 function AdminLogin() {
 
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState('admin');
     const [logginguser, setLoggingUser] = useState('Admin');
-    const [formData, setFormData] = useState({
-        id: '',
-        password: '',
-        role: ''
-      });
+    // const [formData, setFormData] = useState({
+    //     id: '',
+    //     password: '',
+    //     role: ''
+    //   });
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const navigate = useNavigate();
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+
+        try {
+          await axios.post("http://localhost:3000/api/admin/login",{email,password})
+          alert("login successful")
+        } catch (error) {
+          alert("login failed")
+          console.log(error)
+        }
+  
+
       };
 
     const handleRoleChange = (e) => {
@@ -76,9 +90,9 @@ function AdminLogin() {
             <input
               type="text"
               placeholder="Enter your ID"
-              value={formData.id}
-              onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -89,9 +103,9 @@ function AdminLogin() {
             <input
               type="password"
               placeholder="Enter your password"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 

@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../Components/Button';
 import { primaryColor, secondaryColor } from '../Constants/theme';
+import axios from 'axios'
+
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Add your registration logic here
     console.log('Username:', username);
     console.log('Email:', email);
     console.log('Password:', password);
     console.log('Confirm Password:', confirmPassword);
+
+     try { 
+      await axios.post('http://localhost:3000/api/admin/register',{username,password,email}) 
+      alert("Registration Sucessful");
+      navigate('/login');
+    } catch (error) {
+      alert("Registration failed")
+      console.log(error)
+    }
   };
 
   return (

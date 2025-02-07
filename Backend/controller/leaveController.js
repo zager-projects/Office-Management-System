@@ -1,9 +1,9 @@
-const Leave = require('../models/leaveModel');
+import Leave from "../models/leaveModel.js"; // ✅ Use ES module import
 
 // Create a leave request
-exports.createLeaveRequest = async (req, res) => {
+export const createLeaveRequest = async (req, res) => {
     try {
-        const { username, leaveType, leaveStartDate, leaveEndDate, reason,emailId } = req.body;
+        const { username, leaveType, leaveStartDate, leaveEndDate, reason, emailId } = req.body;
 
         // Create a new leave document
         const leaveRequest = new Leave({
@@ -23,17 +23,18 @@ exports.createLeaveRequest = async (req, res) => {
     }
 };
 
-
-exports.getAllLeaveRequests = async (req, res) => {
+// Fetch all leave requests
+export const getAllLeaveRequests = async (req, res) => {
     try {
-        const leaveRequests = await Leave.find(); // Fetch all leave requests from DB
+        const leaveRequests = await Leave.find();
         res.status(200).json(leaveRequests);
     } catch (err) {
         res.status(500).json({ error: 'Error fetching leave requests' });
     }
 };
 
-exports.updateLeaveRequestStatus = async (req, res) => {
+// Update leave request status
+export const updateLeaveRequestStatus = async (req, res) => {
     try {
         const { id } = req.params;
         const { status } = req.body;
@@ -45,7 +46,7 @@ exports.updateLeaveRequestStatus = async (req, res) => {
         const updatedLeave = await Leave.findByIdAndUpdate(
             id,
             { status },
-            { new: true } // This option returns the updated document
+            { new: true }
         );
 
         if (!updatedLeave) {
@@ -57,20 +58,16 @@ exports.updateLeaveRequestStatus = async (req, res) => {
         console.error('Error updating leave status:', error);
         res.status(500).json({ message: error.message });
     } 
-}
+};
 
-exports.getEmployeeLeaveRequests = async (req, res) => {
+// Get employee leave requests
+export const getEmployeeLeaveRequests = async (req, res) => {
     try {
         const { emailId } = req.params;
-        // console.log(emailId);
-        
-        // Find all leaves for the specific email
         const leaves = await Leave.find({ emailId });
-        // console.log(leaves); 
-        
         res.json(leaves);
     } catch (error) {
         console.error('Error fetching employee leaves:', error);
         res.status(500).json({ message: error.message });
     }
-}
+};

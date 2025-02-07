@@ -1,5 +1,5 @@
-const Salary = require("../models/Salary");
-const Employee = require("../models/User");
+import Salary from "../models/Salary.js";
+import Employee from "../models/Employee.js";  // ✅ Fix: Change require to import
 
 // Create salary record
 const createSalary = async (req, res) => {
@@ -40,7 +40,7 @@ const getSalaryByEmployee = async (req, res) => {
         const { employeeId } = req.params;
         const salaries = await Salary.find({ employeeId }).populate("employeeId", "name department");
 
-        if (!salaries) {
+        if (!salaries.length) {  // ✅ Fix: Check if array is empty
             return res.status(404).json({ message: "No salary records found for this employee" });
         }
         res.status(200).json(salaries);
@@ -81,4 +81,4 @@ const deleteSalary = async (req, res) => {
     }
 };
 
-module.exports = { createSalary, getSalaries, getSalaryByEmployee, updateSalary, deleteSalary };
+export { createSalary, getSalaries, getSalaryByEmployee, updateSalary, deleteSalary }; // ✅ Fix: Use named exports

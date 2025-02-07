@@ -1,20 +1,20 @@
-const Attendance = require('../models/attendanceModel');
-const User = require('../models/userModel');
+import Attendance from '../models/attendanceModel.js';
+import User from '../models/Employee.js';
 
 // Record attendance status (Present/Absent)
-exports.recordAttendance = async (req, res) => {
-  const { userId, status, date } = req.body;
+export const recordAttendance = async (req, res) => {
+  const { employeeID, status, date } = req.body;
 
   try {
     // Check if the user exists
-    const user = await User.findById(userId);
-    if (!user) {
+    const employee = await User.findById(employeeID);
+    if (!employee) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Update or create attendance record
     const attendance = await Attendance.findOneAndUpdate(
-      { userId, date },
+      { employeeID, date },
       { status },
       { new: true, upsert: true }
     );
@@ -26,19 +26,19 @@ exports.recordAttendance = async (req, res) => {
 };
 
 // Record clock-in time
-exports.recordClockIn = async (req, res) => {
-  const { userId, clockIn, date } = req.body;
+export const recordClockIn = async (req, res) => {
+  const { employeeID, clockIn, date } = req.body;
 
   try {
     // Check if the user exists
-    const user = await User.findById(userId);
-    if (!user) {
+    const employee = await User.findById(employeeID);
+    if (!employee) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Update or create attendance record with clock-in time
     const attendance = await Attendance.findOneAndUpdate(
-      { userId, date },
+      { employeeID, date },
       { clockIn },
       { new: true, upsert: true }
     );
@@ -50,18 +50,18 @@ exports.recordClockIn = async (req, res) => {
 };
 
 // Record clock-out time and calculate total time
-exports.recordClockOut = async (req, res) => {
-  const { userId, clockOut, date } = req.body;
+export const recordClockOut = async (req, res) => {
+  const { employeeID, clockOut, date } = req.body;
 
   try {
     // Check if the user exists
-    const user = await User.findById(userId);
-    if (!user) {
+    const employee = await User.findById(employeeID);
+    if (!employee) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Find the attendance record for the user and date
-    const attendance = await Attendance.findOne({ userId, date });
+    const attendance = await Attendance.findOne({ employeeID, date });
     if (!attendance) {
       return res.status(404).json({ message: 'Attendance record not found' });
     }
@@ -82,15 +82,15 @@ exports.recordClockOut = async (req, res) => {
 };
 
 // Download attendance report as CSV
-exports.downloadReport = async (req, res) => {
+export const downloadReport = async (req, res) => {
   try {
     // Fetch all attendance records and populate user details
-    const attendances = await Attendance.find().populate('userId', 'fullName emailId');
+    const attendances = await Attendance.find().populate('employeeID', 'fullName emailId');
 
     // Generate CSV content
     let csv = 'Name,Email,Date,Status,Clock-In,Clock-Out,Total Time\n';
     attendances.forEach((att) => {
-      csv += `${att.userId.fullName},${att.userId.emailId},${att.date},${att.status},${att.clockIn || 'N/A'},${att.clockOut || 'N/A'},${att.totalTime || 'N/A'}\n`;
+      csv += `${att.employeeID.fullName},${att.employeeID.emailId},${att.date},${att.status},${att.clockIn || 'N/A'},${att.clockOut || 'N/A'},${att.totalTime || 'N/A'}\n`;
     });
 
     // Set response headers for CSV download
@@ -106,8 +106,8 @@ exports.downloadReport = async (req, res) => {
 function calculateTotalTime(clockIn, clockOut) {
   if (!clockIn || !clockOut) return '0.00 hours';
 
-  const [inHours, inMinutes] = clockIn.split(':');
-  const [outHours, outMinutes] = clockOut.split(':');
+  const [inHours, inMinutes] = clockIn.split(':').map(Number);
+  const [outHours, outMinutes] = clockOut.split(':').map(Number);
 
   const totalMinutes = (outHours - inHours) * 60 + (outMinutes - inMinutes);
   const hours = Math.floor(totalMinutes / 60);
@@ -116,8 +116,8 @@ function calculateTotalTime(clockIn, clockOut) {
   return `${hours}.${minutes.toString().padStart(2, '0')} hours`;
 }
 
-
-exports.getAttendanceByDate = async (req, res) => {
+// Get attendance by date
+export const getAttendanceByDate = async (req, res) => {
   try {
     const { date } = req.params;
     const attendance = await Attendance.find({ date });
@@ -128,26 +128,19 @@ exports.getAttendanceByDate = async (req, res) => {
   }
 };
 
-exports.getEmployeeAttendance = async (req, res) => {
+// Get employee attendance for a specific month
+export const getEmployeeAttendance = async (req, res) => {
   try {
     const { userId, month } = req.params;
 
-    // const user = await User.findOne({ emailId });
-    // if (!user) {
-    //   return res.status(404).json({ message: 'User not found' });
-    // }
-    
     // Create date range for the selected month
     const startDate = `${month}-01`;
     const lastDay = new Date(month.split('-')[0], month.split('-')[1], 0).getDate();
     const endDate = `${month}-${lastDay}`;
 
     const attendance = await Attendance.find({
-      userId,
-      date: {
-        $gte: startDate,
-        $lte: endDate
-      }
+      employeeID: userId,
+      date: { $gte: startDate, $lte: endDate },
     }).sort({ date: 1 });
 
     res.json(attendance);

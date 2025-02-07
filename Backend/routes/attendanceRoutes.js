@@ -1,21 +1,31 @@
-const express = require('express');
+import express from 'express';
+import {
+  recordAttendance,
+  recordClockIn,
+  recordClockOut,
+  downloadReport,
+  getAttendanceByDate,
+  getEmployeeAttendance
+} from '../controller/attendanceController.js';
+
 const router = express.Router();
-const attendanceController = require('../controllers/attendanceController');
 
 // Record attendance status
-router.post('/record', attendanceController.recordAttendance);
+router.post('/record', recordAttendance);
 
 // Record clock-in time
-router.post('/clockin', attendanceController.recordClockIn);
+router.post('/clockin', recordClockIn);
 
 // Record clock-out time
-router.post('/clockout', attendanceController.recordClockOut);
+router.post('/clockout', recordClockOut);
 
 // Download attendance report
-router.get('/report', attendanceController.downloadReport);
+router.get('/report', downloadReport);
 
-router.get('/daily/:date', attendanceController.getAttendanceByDate);
+// Get attendance by date
+router.get('/daily/:date', getAttendanceByDate);
 
-router.get('/employee/:userId/:month', attendanceController.getEmployeeAttendance);
+// Get employee attendance by month
+router.get('/employee/:userId/:month', getEmployeeAttendance);
 
-module.exports = router;
+export default router;

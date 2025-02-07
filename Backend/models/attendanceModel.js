@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const attendanceSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  // emailId:{type:String, ref: 'User', required: true},
+  employeeID: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   date: { type: String, required: true }, // Store date as a string (YYYY-MM-DD)
   status: { type: String, enum: ['Present', 'Absent'], default: 'Absent' },
   clockIn: { type: String }, // Store time as a string (HH:MM:SS)
@@ -11,6 +10,7 @@ const attendanceSchema = new mongoose.Schema({
 });
 
 // Ensure each user can only have one attendance record per date
-attendanceSchema.index({ userId: 1, date: 1 }, { unique: true });
+attendanceSchema.index({ employeeID: 1, date: 1 }, { unique: true });
 
-module.exports = mongoose.model('Attendance', attendanceSchema);
+const Attendance = mongoose.model('Attendance', attendanceSchema);
+export default Attendance;

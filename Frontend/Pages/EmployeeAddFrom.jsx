@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { primaryColor } from '../Constants/theme';
-const EmployeeForm = () => {
+const EmployeeAddForm = () => {
   const [fullName, setFullName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [gender, setGender] = useState('');
@@ -371,4 +371,4 @@ const EmployeeForm = () => {
   );
 };
 
-export default EmployeeForm;
+export default EmployeeAddForm;

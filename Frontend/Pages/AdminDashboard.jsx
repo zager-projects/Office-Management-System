@@ -1,8 +1,12 @@
 import React from 'react'
+import { primaryColor,secondaryColor } from '../Constants/theme'
+import DashboardNavbar from '../Components/DashboardNavbar'
 
 function AdminDashboard() {
   return (
-    <div>AdminDashboard</div>
+    <>
+    <DashboardNavbar first="A" second="dmin Dashboard"/>
+    </>
   )
 }
 

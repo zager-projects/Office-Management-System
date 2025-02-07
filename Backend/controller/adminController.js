@@ -1,11 +1,10 @@
-import Admin from "../models/AdminModel";
-import Employee from "../models/EmployeeModel";
-
+import Admin from "../models/AdminMdoel.js";
+import Employee from "../models/Employee.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 // ✅ Admin Registration
-exports.registerAdmin = async (req, res) => {
+const registerAdmin = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -23,7 +22,7 @@ exports.registerAdmin = async (req, res) => {
 };
 
 // ✅ Admin Login
-exports.loginAdmin = async (req, res) => {
+const loginAdmin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -46,7 +45,7 @@ exports.loginAdmin = async (req, res) => {
 };
 
 // ✅ Only Admin Can Register New Employees
-exports.registerEmployee = async (req, res) => {
+const registerEmployee = async (req, res) => {
   try {
     const { password, ...employeeData } = req.body;
     
@@ -59,3 +58,5 @@ exports.registerEmployee = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export {registerAdmin , loginAdmin , registerEmployee }

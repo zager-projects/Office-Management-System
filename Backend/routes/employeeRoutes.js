@@ -1,6 +1,5 @@
 import express from 'express'
-import {createEmployee, getAllEmployees , getEmployeeById, updateEmployee, deleteEmployee} from '../controllers/employeeController.js';
-const employeeController = require("../controllers/employeeController");
+import { createEmployee , getAllEmployees , getEmployeeById, updateEmployee, deleteEmployee} from '../controller/employeeController.js';
 
 const router = express.Router();
 
@@ -11,4 +10,4 @@ router.get("/:id", getEmployeeById);
 router.put("/:id", updateEmployee);
 router.delete("/:id", deleteEmployee);
 
-module.exports = router;
+export default router;

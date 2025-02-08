@@ -27,8 +27,8 @@ const employeeSchema = new mongoose.Schema({
     }
   },
   address: {
-      type: String,
-      required:true,
+    type: String,
+    required: true,
   },
   profilePicture: {
     type: String // URL to the profile picture or file path
@@ -110,7 +110,7 @@ const employeeSchema = new mongoose.Schema({
     }
   },
   taxInformation: {
-      type: Number
+    type: Number,
   },
 
   // Emergency Contact Details

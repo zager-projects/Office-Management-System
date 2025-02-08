@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../Components/Button';
 import { primaryColor, secondaryColor } from '../Constants/theme';
+import Button from '../Components/Button';
+// import axios from 'axios';
 
 
 function AdminLogin() {
@@ -25,6 +27,7 @@ function AdminLogin() {
         try {
           await axios.post("http://localhost:3000/api/admin/login",{email,password})
           alert("login successful")
+          navigate("/admin")
         } catch (error) {
           alert("login failed")
           console.log(error)

@@ -1,63 +1,111 @@
 import React, { useState } from 'react';
 import { primaryColor } from '../Constants/theme';
-const EmployeeAddForm = () => {
-  const [fullName, setFullName] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [gender, setGender] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
-  const [employeeId, setEmployeeId] = useState('');
-  const [joiningDate, setJoiningDate] = useState('');
-  const [department, setDepartment] = useState('');
-  const [designation, setDesignation] = useState('');
-  const [reportingManager, setReportingManager] = useState('');
-  const [employmentType, setEmploymentType] = useState('');
-  const [workLocation, setWorkLocation] = useState('');
-  const [companyEmail, setCompanyEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [roleAccessLevel, setRoleAccessLevel] = useState('');
-  const [accountStatus, setAccountStatus] = useState('');
-  const [bankAccountNumber, setBankAccountNumber] = useState('');
-  const [salaryStructure, setSalaryStructure] = useState('');
-  const [taxInformation, setTaxInformation] = useState('');
-  const [emergencyContactName, setEmergencyContactName] = useState('');
-  const [emergencyContactRelationship, setEmergencyContactRelationship] = useState('');
-  const [emergencyContactNumber, setEmergencyContactNumber] = useState('');
+import axios from 'axios';
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log({
-      fullName,
-      dateOfBirth,
-      gender,
-      phone,
-      email,
-      address,
-      profilePicture,
-      employeeId,
-      joiningDate,
-      department,
-      designation,
-      reportingManager,
-      employmentType,
-      workLocation,
-      companyEmail,
-      username,
-      password,
-      roleAccessLevel,
-      accountStatus,
-      bankAccountNumber,
-      salaryStructure,
-      taxInformation,
-      emergencyContactName,
-      emergencyContactRelationship,
-      emergencyContactNumber,
-    });
-  };
+const EmployeeAddForm = () => {
+   // Personal Details
+   const [fullName, setFullName] = useState('');
+   const [dateOfBirth, setDateOfBirth] = useState('');
+   const [gender, setGender] = useState('');
+   const [phone, setPhone] = useState('');
+   const [email, setEmail] = useState('');
+   const [address, setAddress] = useState('');
+   const [profilePicture, setProfilePicture] = useState("https://images.unsplash.com/photo-1495446815901-a7297e633e8d");
+ 
+   // Professional Details
+   const [employeeID, setEmployeeID] = useState('');
+   const [joiningDate, setJoiningDate] = useState('');
+   const [department, setDepartment] = useState('');
+   const [designation, setDesignation] = useState('');
+   const [reportingManager, setReportingManager] = useState('');
+   const [employmentType, setEmploymentType] = useState('');
+   const [workLocation, setWorkLocation] = useState('');
+ 
+   // Account & Credentials
+   const [companyEmail, setCompanyEmail] = useState('');
+   const [username, setUsername] = useState('');
+   const [password, setPassword] = useState('');
+   const [roleBasedAccessLevel, setRoleBasedAccessLevel] = useState('');
+   const [accountStatus, setAccountStatus] = useState('');
+ 
+   // Bank & Salary Information
+   const [bankAccountNumber, setBankAccountNumber] = useState('');
+   const [basicPay, setBasicPay] = useState('');
+   const [deductions, setDeductions] = useState('');
+   const [benefits, setBenefits] = useState('');
+   const [taxInformation, setTaxInformation] = useState('');
+ 
+   // Emergency Contact
+   const [name, setName] = useState('');
+   const [relationship, setRelationship] = useState('');
+   const [contactNumber, setcontactNumber] = useState('');
+ 
+   const handleSubmit = async (e) => {
+     e.preventDefault();
+     
+     try {
+        const token = localStorage.getItem('adminToken');
+
+        const formData = {
+          fullName,
+          dateOfBirth, // This will be automatically parsed by MongoDB
+          gender: gender.charAt(0).toUpperCase() + gender.slice(1), // Capitalize first letter
+          contactInfo: {
+            phone,
+            email,
+          },
+          address,
+          profilePicture,
+          employeeID,
+          joiningDate,
+          department: department.toUpperCase(), // Convert to match enum
+          designation,
+          reportingManager,
+          employmentType: employmentType.split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join('-'), // Convert "full-time" to "Full-Time"
+          workLocation: workLocation === 'in-office' ? 'In-Office' : 'Remote',
+          companyEmail,
+          username,
+          password,
+          roleBasedAccessLevel: roleBasedAccessLevel.charAt(0).toUpperCase() + roleBasedAccessLevel.slice(1),
+          accountStatus: accountStatus.split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' '), // Convert "on-leave" to "On Leave"
+          bankAccountNumber,
+          salaryStructure: {
+            basicPay: Number(basicPay),
+            deductions: Number(deductions),
+            benefits: Number(benefits),
+          },
+          taxInformation,
+          emergencyContact: {
+            name,
+            relationship,
+            contactNumber,
+          }
+        };
+    
+       const response = await fetch('http://localhost:3000/api/admin/register-employee', {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${token}`,
+         },
+         body: JSON.stringify({formData}),
+       });
+ 
+       if (response.ok) {
+         alert('Employee registration successful');
+         // Reset all form fields
+       } else {
+         alert('Employee registration failed');
+       }
+     } catch (error) {
+       console.error('Error:', error);
+       alert('Employee registration failed');
+     }
+   };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
@@ -133,8 +181,10 @@ const EmployeeAddForm = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Profile Picture</label>
             <input
-              type="file"
-              onChange={(e) => setProfilePicture(e.target.files[0])}
+            readOnly
+              // type="file"
+              value={profilePicture}
+              // onChange={(e) => setProfilePicture(e.target.files[0])}
               placeholder=''
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
             />
@@ -150,8 +200,8 @@ const EmployeeAddForm = () => {
             <label className="block text-sm font-medium text-gray-700">Employee ID</label>
             <input
               type="text"
-              value={employeeId}
-              onChange={(e) => setEmployeeId(e.target.value)}
+              value={employeeID}
+              onChange={(e) => setEmployeeID(e.target.value)}
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
             />
@@ -168,13 +218,25 @@ const EmployeeAddForm = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Department</label>
-            <input
+            {/* <input
               type="text"
               value={department}
               onChange={(e) => setDepartment(e.target.value)}
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
-            />
+            /> */}
+            <select
+  value={department}
+  onChange={(e) => setDepartment(e.target.value)}
+  required
+  className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
+>
+  <option value="">Select Department</option>
+  <option value="HR">HR</option>
+  <option value="IT">IT</option>
+  <option value="Finance">Finance</option>
+  <option value="Other">Other</option>
+</select>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Designation</label>
@@ -264,8 +326,8 @@ const EmployeeAddForm = () => {
             <label className="block text -sm font-medium text-gray-700">Role-based Access Level</label>
             <input
               type="text"
-              value={roleAccessLevel}
-              onChange={(e) => setRoleAccessLevel(e.target.value)}
+              value={roleBasedAccessLevel}
+              onChange={(e) => setRoleBasedAccessLevel(e.target.value)}
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
             />
@@ -300,7 +362,7 @@ const EmployeeAddForm = () => {
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700">Salary Structure</label>
             <textarea
               value={salaryStructure}
@@ -308,6 +370,27 @@ const EmployeeAddForm = () => {
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
             />
+          </div> */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Basic pay</label>
+            <input type="number"
+            value={basicPay}
+            onChange={(e) => setBasicPay(e.target.value)}
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"  />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Dedeuctions</label>
+            <input type="number"
+            value={deductions}
+            onChange={(e) => setDeductions(e.target.value)}
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"  />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Benefits</label>
+            <input type="number"
+            value={benefits}
+            onChange={(e) => setBenefits(e.target.value)}
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"  />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Tax Information</label>
@@ -328,8 +411,8 @@ const EmployeeAddForm = () => {
             <label className="block text-sm font-medium text-gray-700">Name</label>
             <input
               type="text"
-              value={emergencyContactName}
-              onChange={(e) => setEmergencyContactName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
             />
@@ -338,8 +421,8 @@ const EmployeeAddForm = () => {
             <label className="block text-sm font-medium text-gray-700">Relationship</label>
             <input
               type="text"
-              value={emergencyContactRelationship}
-              onChange={(e) => setEmergencyContactRelationship(e.target.value)}
+              value={relationship}
+              onChange={(e) => setRelationship(e.target.value)}
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
             />
@@ -348,8 +431,8 @@ const EmployeeAddForm = () => {
             <label className="block text-sm font-medium text-gray-700">Contact Number</label>
             <input
               type="tel"
-              value={emergencyContactNumber}
-              onChange={(e) => setEmergencyContactNumber(e.target.value)}
+              value={contactNumber}
+              onChange={(e) => setcontactNumber(e.target.value)}
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
             />

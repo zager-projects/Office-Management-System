@@ -4,11 +4,80 @@ import bcrypt from "bcrypt"; // Import bcrypt for password hashing
 // ✅ Create Employee
 export const createEmployee = async (req, res) => {
   try {
-    const { password, ...employeeData } = req.body;
+    const { 
+      fullName,
+        dateOfBirth,
+        gender,
+        contactInfo:{
+          phone,
+          email,
+        },
+        address,
+        profilePicture,
+        employeeID,
+        joiningDate,
+        department,
+        designation,
+        reportingManager,
+        employmentType,
+        workLocation,
+        companyEmail,
+        username,
+        password,
+        roleBasedAccessLevel,
+        accountStatus,
+        bankAccountNumber,
+        salaryStructure:{
+          basicPay,
+          deductions,
+          benefits,
+        },
+        taxInformation,
+        emergencyContact:{
+          name,
+          relationship,
+          contactNumber,
+        }
+     } = req.body;
 
     // Hash password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newEmployee = new Employee({ ...employeeData, password: hashedPassword });
+    // const newEmployee = new Employee({ ...employeeData, password: hashedPassword });
+    const newEmployee = new EmployeeModel({
+      fullName,
+        dateOfBirth,
+        gender,
+        contactInfo:{
+          phone,
+          email,
+        },
+        address,
+        profilePicture,
+        employeeID,
+        joiningDate,
+        department,
+        designation,
+        reportingManager,
+        employmentType,
+        workLocation,
+        companyEmail,
+        username,
+        password:hashedPassword,
+        roleBasedAccessLevel,
+        accountStatus,
+        bankAccountNumber,
+        salaryStructure:{
+          basicPay,
+          deductions,
+          benefits,
+        },
+        taxInformation,
+        emergencyContact:{
+          name,
+          relationship,
+          contactNumber,
+        }
+    });
 
     await newEmployee.save();
     res.status(201).json({ success: true, message: "Employee created successfully", employee: newEmployee });

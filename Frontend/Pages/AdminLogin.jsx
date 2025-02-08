@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { primaryColor, secondaryColor } from '../Constants/theme';
 import Button from '../Components/Button';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 function AdminLogin() {

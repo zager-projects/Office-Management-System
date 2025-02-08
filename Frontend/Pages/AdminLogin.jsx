@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { primaryColor, secondaryColor } from '../Constants/theme';
 import Button from '../Components/Button';
-import axios from 'axios';
+import { primaryColor, secondaryColor } from '../Constants/theme';
 
 
 function AdminLogin() {
@@ -53,7 +52,7 @@ function AdminLogin() {
     }
   return (
     <>
-        <div className='h-[10vh] flex items-center justify-between px-10'>        
+        <div className='h-[10vh] flex items-center justify-between px-10'>
         {/* <p className='uppercase font-bold text-[2vw]'><span style={{color:secondaryColor}}>Office</span> management system</p> */}
         <p className='uppercase font-bold text-3xl'><span style={{color:secondaryColor}}>O</span>ms <span style={{color:secondaryColor}}>l</span>ogin</p>
         <div className='flex md:gap-4 gap-2'>

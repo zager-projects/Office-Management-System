@@ -5,6 +5,9 @@ import { NavLink, Routes, Route } from 'react-router-dom';
 import EmployeeAddForm from './EmployeeAddFrom';
 // import EmployeeAddForm from '../Pages/EmployeeAddForm';
 import Sidebar from '../Components/Sidebar';
+import Button from '../Components/Button';
+import AdminTaskList from './AdminTaskList';
+import CreateTaskForm from '../Components/CreateTaskForm';
 
 
 const AdminDashboard = () => {
@@ -74,12 +77,26 @@ const AdminDashboard = () => {
         {/* <aside className="w-60 h-[90vh] bg-red-200 flex-shrink-0"> */}
           {/* Sidebar content */}
         {/* </aside> */}
-        <Sidebar/>
-
+        {/* <Sidebar/> */}
+        <div className="w-64 h-[90vh] text-gray-500 flex flex-col justify-between p-4 shadow-2xl">
+        <div className="space-y-2">
+          <NavLink to="/admin/tasklist">
+            <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Tasks</div>
+          </NavLink>
+          <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Attendance</div>
+          <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Leave</div>
+          <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Feedback</div>
+          <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Salary</div>
+        </div>
+        <Button value={"Logout"}/>
+      </div>
+          
         {/* Scrollable Content Area */}
         <main className="flex-1 overflow-y-auto p-4">
           <Routes>
             <Route path="/register-employee" element={<EmployeeAddForm />} />
+            <Route path="/tasklist" element={<AdminTaskList />} />
+            <Route path="/createtask" element={<CreateTaskForm />} />
             {/* Add other routes as needed */}
           </Routes>
         </main>

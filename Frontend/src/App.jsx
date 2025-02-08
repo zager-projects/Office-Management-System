@@ -21,10 +21,10 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/manager-login" element={<ManagerLogin />} />
         <Route path="/employee-login" element={<EmployeeLogin />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        {/* <Route path="/admin" element={<AdminDashboard />} /> */}
         {/* <Route path="/employeeaddform" element={<EmployeeAddForm />} /> */}
         <Route path="/admin/*" element={<AdminDashboard />} />
-        <Route path="/admindashboard" element={<AdminDashboard />} />
+        {/* <Route path="/admindashboard" element={<AdminDashboard />} /> */}
         <Route path="/employeeaddform" element={<EmployeeAddForm />} />
         <Route path="/employeedashboard" element={<EmployeeDashboard />} />
       </Routes>

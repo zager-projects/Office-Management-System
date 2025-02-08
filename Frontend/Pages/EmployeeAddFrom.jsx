@@ -44,7 +44,8 @@ const EmployeeAddForm = () => {
      e.preventDefault();
      
      try {
-        const token = localStorage.getItem('adminToken');
+        // const token = localStorage.getItem('adminToken');
+        // console.log("Token: " + token);
 
         const formData = {
           fullName,
@@ -92,7 +93,7 @@ const EmployeeAddForm = () => {
            'Content-Type': 'application/json',
            'Authorization': `Bearer ${token}`,
          },
-         body: JSON.stringify({formData}),
+         body: JSON.stringify(formData),
        });
  
        if (response.ok) {

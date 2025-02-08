@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { primaryColor } from '../Constants/theme';
+import axios from 'axios';
 const EmployeeAddForm = () => {
   const [fullName, setFullName] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');

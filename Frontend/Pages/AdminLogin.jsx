@@ -24,8 +24,12 @@ function AdminLogin() {
         e.preventDefault();
 
         try {
-          await axios.post("http://localhost:3000/api/admin/login",{email,password})
+          const response = await axios.post("http://localhost:3000/api/admin/login",{email,password})
+          // console.log(response.data);
+          const {token} = response.data;
+          localStorage.setItem('adminToken', token);
           alert("login successful")
+          navigate("/admin")
         } catch (error) {
           alert("login failed")
           console.log(error)

@@ -1,7 +1,7 @@
 import express from 'express'
 // import {createEmployee, getAllEmployees , getEmployeeById, updateEmployee, deleteEmployee} from '../controller/employeeController.js';
 import {createEmployee, getAllEmployees , getEmployeeById, updateEmployee, deleteEmployee} from '../controller/employeeController.js';
-import employeeController from "../controller/employeeController.js";
+// import employeeController from "../controller/employeeController.js";
 
 const router = express.Router();
 

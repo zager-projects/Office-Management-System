@@ -27,18 +27,8 @@ const employeeSchema = new mongoose.Schema({
     }
   },
   address: {
-    street: {
-      type: String
-    },
-    city: {
-      type: String
-    },
-    state: {
-      type: String
-    },
-    zipCode: {
-      type: String
-    }
+    type: String,
+    required: true,
   },
   profilePicture: {
     type: String // URL to the profile picture or file path
@@ -120,12 +110,7 @@ const employeeSchema = new mongoose.Schema({
     }
   },
   taxInformation: {
-    taxId: {
-      type: String
-    },
-    taxRate: {
-      type: Number
-    }
+    type: Number,
   },
 
   // Emergency Contact Details

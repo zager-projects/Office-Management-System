@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import taskroutes from './routes/taskRoutes.js'
-// import employeeRouter from './routes/employeeRoutes.js'
+import employeeRouter from './routes/employeeRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 import bodyParser from "body-parser";
 
@@ -24,10 +24,12 @@ app.use(bodyParser.json());
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
+// app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/task", taskroutes);
-// app.use("api/employee",employeeRouter);
+app.use("/api/employee",employeeRouter);
 app.use("/api/admin", adminRoutes);
 
 // Start Server

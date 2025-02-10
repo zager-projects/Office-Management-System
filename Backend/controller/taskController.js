@@ -50,7 +50,7 @@ if (!user) {
   console.log(listTasks);
   try {
     const tasks = await taskModel.find({ });
-    console.log(tasks);
+    // console.log(tasks);
     res.json({success:true , tasks});
   }
   catch (error) {

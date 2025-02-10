@@ -1,15 +1,12 @@
-import React from 'react'
-import ManagerDashboard from './ManagerDashboard'
+import React from 'react';
+import Navbar from '../Components/Navbar';
 
 
 
 function HomePage() {
   return (
     <>
-    {/* <Navbar/> */}
-    {/* <Sidebar/> */}
-    <ManagerDashboard/>
-    {/* <EmployeeDashboard/> */}
+    <Navbar/>
     </>
   )
 }

@@ -47,6 +47,7 @@ const AdminDashboard = () => {
               <div className="py-1" role="menu" aria-orientation="vertical">
                 <NavLink to="/admin/register-employee">
                   <button
+                  onClick={toggleDropdown}
                     className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                   >
@@ -88,7 +89,7 @@ const AdminDashboard = () => {
           <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Feedback</div>
           <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Salary</div>
         </div>
-        <Button value={"Logout"}/>
+        <Button  value={"Logout"}/>
       </div>
           
         {/* Scrollable Content Area */}
@@ -97,7 +98,6 @@ const AdminDashboard = () => {
             <Route path="/register-employee" element={<EmployeeAddForm />} />
             <Route path="/tasklist" element={<AdminTaskList />} />
             <Route path="/createtask" element={<CreateTaskForm />} />
-            {/* Add other routes as needed */}
           </Routes>
         </main>
       </div>

@@ -5,7 +5,7 @@ import connectDB from "./config/db.js";
 import taskroutes from './routes/taskRoutes.js'
 import employeeRouter from './routes/employeeRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
-// import bodyParser from "body-parser";
+import bodyParser from "body-parser";
 
 dotenv.config();
 const app = express();
@@ -16,6 +16,7 @@ connectDB();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 // app.use(express.urlencoded({ extended: true }));
 
 // Routes

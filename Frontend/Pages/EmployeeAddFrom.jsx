@@ -44,7 +44,7 @@ const EmployeeAddForm = () => {
      e.preventDefault();
      
      try {
-        // const token = localStorage.getItem('adminToken');
+        const token = localStorage.getItem('adminToken');
         // console.log("Token: " + token);
 
         const formData = {

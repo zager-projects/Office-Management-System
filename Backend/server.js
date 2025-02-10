@@ -31,6 +31,9 @@ app.use(bodyParser.json());
 app.use("/api/task", taskroutes);
 app.use("/api/employee",employeeRouter);
 app.use("/api/admin", adminRoutes);
+app.use('/api/leave', leaveRoutes);
+app.use('/api/attendance', attendanceRoutes);
+
 
 // Start Server
 const PORT = process.env.PORT || 5000;

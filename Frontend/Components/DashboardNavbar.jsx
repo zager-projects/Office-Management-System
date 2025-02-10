@@ -1,16 +1,21 @@
-import React from 'react'
-import { primaryColor,secondaryColor } from '../Constants/theme'
+import React from "react";
+import { primaryColor, secondaryColor } from "../Constants/theme";
 
-function DashboardNavbar({first,second}) {
+function DashboardNavbar({ first, second }) {
   return (
     <>
-    {/* <div className='h-[10vh] flex items-center justify-between px-10 bg-red-50'>         */}
-            {/* <p className='uppercase font-bold text-[2vw]'><span style={{color:secondaryColor}}>Office</span> management system</p> */}
-        <p className='uppercase font-bold text-3xl'><span style={{color:secondaryColor}}>{first}</span>{second}</p>
-    {/* </div> */}
-    {/* </div> */}
+      {/* <div className="h-[10vh] flex items-center justify-between px-10 bg-red-50 fixed top-0 left-0 right-0 "> */}
+        {/* <p className="uppercase font-bold text-[2vw]">
+          <span style={{ color: secondaryColor }}>Office</span> management
+          system
+        </p> */}
+        <p className="uppercase font-bold text-3xl">
+          <span style={{ color: secondaryColor }}>{first}</span>
+          {second}
+        </p>
+      {/* </div> */}
     </>
-  )
+  );
 }
 
-export default DashboardNavbar
+export default DashboardNavbar;

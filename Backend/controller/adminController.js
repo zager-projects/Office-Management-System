@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 
 // ✅ Admin Registration
 export const registerAdmin = async (req, res) => {
-  try {
+  try { 
     const { username, email, password } = req.body;
 
     // Check if admin already exists
@@ -40,6 +40,7 @@ export const loginAdmin = async (req, res) => {
       { expiresIn: "1d" }
     );
 
+    
     res.status(200).json({ message: "Login successful", token });
   } catch (error) {
     res.status(500).json({ message: error.message });

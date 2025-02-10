@@ -45,6 +45,7 @@ const EmployeeAddForm = () => {
      
      try {
         const token = localStorage.getItem('adminToken');
+        // console.log("Token: " + token);
 
         const formData = {
           fullName,
@@ -85,14 +86,14 @@ const EmployeeAddForm = () => {
             contactNumber,
           }
         };
-    
+        
        const response = await fetch('http://localhost:3000/api/admin/register-employee', {
          method: 'POST',
          headers: {
            'Content-Type': 'application/json',
            'Authorization': `Bearer ${token}`,
          },
-         body: JSON.stringify({formData}),
+         body: JSON.stringify(formData),
        });
  
        if (response.ok) {

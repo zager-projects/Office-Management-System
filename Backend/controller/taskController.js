@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import taskModel from '../models/Task.js'
+import EmployeeModel from "../models/Employee.js";
 
 
 const addTask = async (req, res) => {
@@ -15,10 +16,14 @@ const addTask = async (req, res) => {
     }
      console.log(username);
     // Validate ObjectId
-    const user = await UserModel.findOne({ username: req.body.username });
+    const user = await EmployeeModel.findOne({ fullName: req.body.username });
 if (!user) {
+  console.log("failed to find user")
   return res.status(400).json({ success: false, message: "Invalid User ID." });
-}
+} 
+// else{
+//   console.log("found " + user)
+// }
 
     // File handling (if a file is uploaded)
     const filePath = req.file ? req.file.path : null;
@@ -36,7 +41,7 @@ if (!user) {
     });
 
     // Save the task to the database
-    const savedTask = await newtaskModel.save();
+    const savedTask = await newTask.save();
 
     res.status(201).json({ success: true, message: "Task created successfully", task: savedTask });
   } catch (error) {
@@ -50,7 +55,7 @@ if (!user) {
   console.log(listTasks);
   try {
     const tasks = await taskModel.find({ });
-    console.log(tasks);
+    // console.log(tasks);
     res.json({success:true , tasks});
   }
   catch (error) {

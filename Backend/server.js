@@ -5,7 +5,7 @@ import connectDB from "./config/db.js";
 import taskroutes from './routes/taskRoutes.js'
 import employeeRouter from './routes/employeeRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
-// import bodyParser from "body-parser";
+import bodyParser from "body-parser";
 
 dotenv.config();
 const app = express();
@@ -13,15 +13,27 @@ const app = express();
 // Connect Database
 connectDB();
 
+// Body Parser Middleware
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/json
+app.use(bodyParser.json());
+
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 // app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/task", taskroutes);
 app.use("/api/employee",employeeRouter);
 app.use("/api/admin", adminRoutes);
+app.use('/api/leave', leaveRoutes);
+app.use('/api/attendance', attendanceRoutes);
+
 
 // Start Server
 const PORT = process.env.PORT || 5000;

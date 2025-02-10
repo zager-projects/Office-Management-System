@@ -1,6 +1,7 @@
 
 import React, { useState } from "react"
 import Button from "./Button"
+import { NavLink } from "react-router-dom"
 
 const Sidebar = ({ onSidebarClick }) => {
   const [isLeaveDropdownOpen, setIsLeaveDropdownOpen] = useState(false)
@@ -32,12 +33,14 @@ const Sidebar = ({ onSidebarClick }) => {
         </div>
         {isLeaveDropdownOpen && (
           <div className="ml-4 space-y-2">
+            <NavLink to="apply-leave">
             <div
               className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg"
               onClick={() => onSidebarClick('applyLeave')}
             >
               Apply Leave
             </div>
+            </NavLink>
             <div
               className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg"
               onClick={() => onSidebarClick('checkLeaveStatus')}

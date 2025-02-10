@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { primaryColor,secondaryColor } from '../Constants/theme'
+import axios from 'axios';
 
 function CreateTaskForm() {
     const [title, setTitle] = useState("");
@@ -7,10 +8,10 @@ function CreateTaskForm() {
     const [priority, setPriority] = useState("");
     const [status, setStatus] = useState("");
     const [dueDate, setDueDate] = useState("");
-    const [assignedTo, setAssignedTo] = useState("");
+    const [username, setUsername] = useState("");
     const [category, setCategory] = useState("");
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         console.log(
             title,
@@ -18,10 +19,17 @@ function CreateTaskForm() {
             priority,
             status,
             dueDate,
-            assignedTo,
+            username,
             category
         );
         
+        try {
+          await axios.post("http://localhost:3000/api/task/add",{title,description,priority,status,dueDate,username,category})
+          alert("Task created successfully!");
+        } catch (error) {
+          alert("Task created failed");
+          console.log(error.message);
+        }
     }
 
   return (
@@ -129,8 +137,8 @@ function CreateTaskForm() {
           <input
             type="text"
             name="username"
-            value={assignedTo}
-            onChange={(e) => setAssignedTo(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />

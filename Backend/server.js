@@ -13,6 +13,14 @@ const app = express();
 // Connect Database
 connectDB();
 
+// Body Parser Middleware
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/json
+app.use(bodyParser.json());
+
 // Middleware
 app.use(cors());
 app.use(express.json());

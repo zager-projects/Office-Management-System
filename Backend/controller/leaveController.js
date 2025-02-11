@@ -5,6 +5,11 @@ export const createLeaveRequest = async (req, res) => {
     try {
         const { username, leaveType, leaveStartDate, leaveEndDate, reason, emailId } = req.body;
 
+        // Validate required fields
+        if (!username || !leaveType || !leaveStartDate || !leaveEndDate || !reason || !emailId) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+
         // Create a new leave document
         const leaveRequest = new Leave({
             username,
@@ -12,13 +17,15 @@ export const createLeaveRequest = async (req, res) => {
             leaveStartDate,
             leaveEndDate,
             reason,
-            emailId
+            emailId,
+            status: 'Pending' // Set default status
         });
 
         // Save the leave request to the database
         await leaveRequest.save();
         res.status(201).json({ message: 'Leave request created successfully', leaveRequest });
     } catch (err) {
+        console.error('Error creating leave request:', err);
         res.status(500).json({ error: 'Error creating leave request' });
     }
 };
@@ -29,6 +36,7 @@ export const getAllLeaveRequests = async (req, res) => {
         const leaveRequests = await Leave.find();
         res.status(200).json(leaveRequests);
     } catch (err) {
+        console.error('Error fetching leave requests:', err);
         res.status(500).json({ error: 'Error fetching leave requests' });
     }
 };

@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import leaveRoutes from './routes/leaveRoutes.js'
 import attendanceRoutes from './routes/attendanceRoutes.js'
 
+
 dotenv.config();
 const app = express();
 

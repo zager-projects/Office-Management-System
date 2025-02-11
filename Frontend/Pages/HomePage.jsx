@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <>
     <Navbar/>
-    <Sidebar/>
+    {/* <Sidebar/> */}
     </>
   )
 }

@@ -52,7 +52,7 @@ if (!user) {
 
 // Get All Tasks
  const listTasks = async (req, res) => {
-  console.log(listTasks);
+  // console.log(listTasks);
   try {
     const tasks = await taskModel.find({ });
     // console.log(tasks);

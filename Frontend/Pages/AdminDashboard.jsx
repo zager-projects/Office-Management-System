@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { primaryColor, secondaryColor } from '../Constants/theme';
 import DashboardNavbar from '../Components/DashboardNavbar';
-import { NavLink, Routes, Route } from 'react-router-dom';
+import { NavLink, Routes, Route, useNavigate } from 'react-router-dom';
 import EmployeeAddForm from './EmployeeAddFrom';
 // import EmployeeAddForm from '../Pages/EmployeeAddForm';
 import Sidebar from '../Components/Sidebar';
@@ -13,9 +13,16 @@ import AllLeaveRequests from './AllLeaveRequests';
 
 const AdminDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    // console.log("run")
+    localStorage.clear();
+    navigate('/');
   };
 
   return (
@@ -92,7 +99,11 @@ const AdminDashboard = () => {
           <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Feedback</div>
           <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Salary</div>
         </div>
-        <Button  value={"Logout"}/>
+
+          <Button value={"Logout"} 
+          onClick={handleLogout}
+          />
+        
       </div>
           
         {/* Scrollable Content Area */}

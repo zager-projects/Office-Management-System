@@ -108,6 +108,23 @@ export const getEmployeeById = async (req, res) => {
   }
 };
 
+// ✅ Get Single Employee by Email
+export const getEmployeeByEmail = async (req, res) => {
+  try {
+    const { email } = req.query;
+    const employee = await EmployeeModel.findOne({ 'contactInfo.email': email });
+    
+    if (!employee) {
+      return res.status(404).json({ success: false, message: "Employee not found" });
+    }
+
+    res.status(200).json({ success: true, employee });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
 // ✅ Update Employee
 export const updateEmployee = async (req, res) => {
   try {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
+// import { NavLink, Route, Routes } from 'react-router-dom';
 import DashboardNavbar from '../Components/DashboardNavbar';
 import { NavLink, Routes, Route, useNavigate } from 'react-router-dom';
 import EmployeeAddForm from './EmployeeAddFrom';
@@ -10,6 +10,8 @@ import AdminTaskList from './AdminTaskList';
 import CreateTaskForm from '../Components/CreateTaskForm';
 import AllLeaveRequests from './AllLeaveRequests';
 import Register from './Register';
+import ManagerAddForm from './ManagerAddForm';
+import EmployeeManagement from '../Components/EmployeeManagement';
 
 
 const AdminDashboard = () => {
@@ -68,12 +70,15 @@ const AdminDashboard = () => {
                       Add Employee
                     </button>
                   </NavLink>
-                  <button
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    role="menuitem"
-                  >
-                    Update Employee
-                  </button>
+                  <NavLink to={"/admin/employeemanagement"}>
+                    <button
+                    onClick={toggleDropdown}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      role="menuitem"
+                    >
+                      Update Employee
+                    </button>
+                  </NavLink>
                   <button
                     className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
@@ -107,7 +112,7 @@ const AdminDashboard = () => {
             {isOpenManager && (
               <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
                 <div className="py-1" role="menu" aria-orientation="vertical">
-                  <NavLink to="/admin/register-employee">
+                  <NavLink to="/admin/register-manager">
                     <button
                     onClick={toggleDropdownManager}
                       className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -169,6 +174,8 @@ const AdminDashboard = () => {
           <Routes>
             <Route path="/register" element={<Register />} />
             <Route path="/register-employee" element={<EmployeeAddForm />} />
+            <Route path="/register-manager" element={<ManagerAddForm />} />
+            <Route path="/employeemanagement" element={<EmployeeManagement />} />
             <Route path="/tasklist" element={<AdminTaskList />} />
             <Route path="/createtask" element={<CreateTaskForm />} />
             <Route path="/leaverequest" element={<AllLeaveRequests />} />

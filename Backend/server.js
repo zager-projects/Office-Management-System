@@ -6,7 +6,7 @@ import connectDB from "./config/db.js";
 import taskroutes from './routes/taskRoutes.js'
 import employeeRouter from './routes/employeeRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
-import bodyParser from "body-parser";
+// import bodyParser from "body-parser";
 import leaveRoutes from './routes/leaveRoutes.js'
 import attendanceRoutes from './routes/attendanceRoutes.js'
 
@@ -36,7 +36,7 @@ app.use("/api/employee", employeeRouter);
 app.use("/api/admin", adminRoutes);
 app.use('/api/leave', leaveRoutes);
 app.use('/api/attendance', attendanceRoutes);
-app.use("/api/documents", fileRoutes);
+// app.use("/api/documents", fileRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

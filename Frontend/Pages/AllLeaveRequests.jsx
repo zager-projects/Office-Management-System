@@ -12,6 +12,7 @@ function AllLeaveRequests() {
     }, []);
 
     const fetchLeaveRequests = async () => {
+      console.log("run")
         try {
           const response = await fetch('http://localhost:3000/api/leave/leavedashboardadmin');
           if (!response.ok) {

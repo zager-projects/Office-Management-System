@@ -21,7 +21,7 @@ const Register = () => {
     console.log('Confirm Password:', confirmPassword);
 
      try { 
-      await axios.post('http://localhost:3000/api/admin/register',{username,password,email}) 
+      await axios.post('http://localhost:5000/api/admin/register',{username,password,email}) 
       alert("Registration Sucessful");
       navigate('/login');
     } catch (error) {

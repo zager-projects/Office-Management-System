@@ -1,4 +1,4 @@
-import bodyParser from "body-parser";
+// import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
@@ -9,7 +9,7 @@ import adminRoutes from './routes/adminRoutes.js'
 import bodyParser from "body-parser";
 import leaveRoutes from './routes/leaveRoutes.js'
 import attendanceRoutes from './routes/attendanceRoutes.js'
-
+import fileRoutes from './routes/fileRoutes.js'
 
 dotenv.config();
 const app = express();

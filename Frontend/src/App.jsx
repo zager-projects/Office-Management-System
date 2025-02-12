@@ -1,14 +1,15 @@
 import { Route, Routes } from 'react-router-dom'
+import AdminDashboard from '../Pages/AdminDashboard'
 import AdminLogin from '../Pages/AdminLogin'
+import EmployeeAddForm from '../Pages/EmployeeAddFrom'
+import EmployeeDashboard from '../Pages/EmployeeDashboard'
 import EmployeeLogin from '../Pages/EmployeeLogin'
 import HomePage from '../Pages/HomePage'
 import Login from '../Pages/Login'
+import ManagerDashboard from '../Pages/ManagerDashboard'
 import ManagerLogin from '../Pages/ManagerLogin'
 import Register from '../Pages/Register'
 import './App.css'
-import AdminDashboard from '../Pages/AdminDashboard'
-import EmployeeAddForm from '../Pages/EmployeeAddFrom'
-import EmployeeDashboard from '../Pages/EmployeeDashboard'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         {/* <Route path="/admindashboard" element={<AdminDashboard />} /> */}
         <Route path="/employeeaddform" element={<EmployeeAddForm />} />
         <Route path="/employeedashboard/*" element={<EmployeeDashboard />} />
+        <Route path="/manager-dashboard/*" element={<ManagerDashboard/>} />
       </Routes>
     </>
   )

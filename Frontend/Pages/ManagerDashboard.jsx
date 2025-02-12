@@ -19,7 +19,7 @@ const ManagerDashboard = () => {
       <div className="h-[10vh] flex items-center justify-between  px-10 bg-white">
         <DashboardNavbar first="Manager " second="Dashboard" />
         <div className="relative inline-block text-left">
-          {/* <button
+          <button
             onClick={toggleDropdown}
             className="inline-flex justify-center items-center px-4 py-2 text-semibold font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-400"
           >
@@ -36,7 +36,7 @@ const ManagerDashboard = () => {
                 clipRule="evenodd"
               />
             </svg>
-          </button> */}
+          </button>
 
           {isOpen && (
             <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">

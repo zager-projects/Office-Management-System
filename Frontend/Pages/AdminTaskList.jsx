@@ -9,7 +9,7 @@ function AdminTaskList() {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/task/list"); // Update with your backend URL
+        const response = await fetch("http://localhost:5000/api/task/list"); // Update with your backend URL
         // console.log(response.json());
         const data = await response.json();
         if (data) {

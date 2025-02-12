@@ -87,7 +87,7 @@ const EmployeeAddForm = () => {
           }
         };
         
-       const response = await fetch('http://localhost:3000/api/admin/register-employee', {
+       const response = await fetch('http://localhost:5000/api/admin/register-employee', {
          method: 'POST',
          headers: {
            'Content-Type': 'application/json',

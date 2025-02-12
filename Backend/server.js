@@ -3,12 +3,13 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import connectDB from "./config/db.js";
-import adminRoutes from './routes/adminRoutes.js';
-import attendanceRoutes from './routes/attendanceRoutes.js';
-import employeeRouter from './routes/employeeRoutes.js';
-import fileRoutes from "./routes/fileRoutes.js"; // Updated to use import
-import leaveRoutes from './routes/leaveRoutes.js';
-import taskroutes from './routes/taskRoutes.js';
+import taskroutes from './routes/taskRoutes.js'
+import employeeRouter from './routes/employeeRoutes.js'
+import adminRoutes from './routes/adminRoutes.js'
+import bodyParser from "body-parser";
+import leaveRoutes from './routes/leaveRoutes.js'
+import attendanceRoutes from './routes/attendanceRoutes.js'
+
 
 dotenv.config();
 const app = express();

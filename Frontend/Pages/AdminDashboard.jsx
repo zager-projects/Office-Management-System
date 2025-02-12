@@ -1,26 +1,35 @@
 import React, { useState } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import DashboardNavbar from '../Components/DashboardNavbar';
+import { NavLink, Routes, Route, useNavigate } from 'react-router-dom';
 import EmployeeAddForm from './EmployeeAddFrom';
 // import EmployeeAddForm from '../Pages/EmployeeAddForm';
 import Sidebar from '../Components/Sidebar';
 import Button from '../Components/Button';
 import AdminTaskList from './AdminTaskList';
 import CreateTaskForm from '../Components/CreateTaskForm';
+import AllLeaveRequests from './AllLeaveRequests';
 
 
 const AdminDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLogout = () => {
+    // console.log("run")
+    localStorage.clear();
+    navigate('/');
+  };
+
   return (
     <div className="flex flex-col h-screen">
       {/* Fixed Navbar */}
-      <div className="h-[10vh] flex items-center justify-between border px-10 bg-white">
-        <DashboardNavbar first="A" second="dmin Dashboard" />
+      <div className="h-[10vh] flex items-center justify-between px-10 bg-white shadow-lg">
+        <DashboardNavbar first="Admin" second=" Dashboard" />
         <div className="relative inline-block text-left">
           <button
             onClick={toggleDropdown}
@@ -84,11 +93,17 @@ const AdminDashboard = () => {
             <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Tasks</div>
           </NavLink>
           <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Attendance</div>
+          <NavLink to="/admin/leaverequest">
           <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Leave</div>
+          </NavLink>
           <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Feedback</div>
           <div className="p-3 text-lg py-2 px-4 cursor-pointer hover:bg-purple-300 hover:text-purple-600 rounded-lg">Salary</div>
         </div>
-        <Button  value={"Logout"}/>
+
+          <Button value={"Logout"} 
+          onClick={handleLogout}
+          />
+        
       </div>
           
         {/* Scrollable Content Area */}
@@ -97,6 +112,7 @@ const AdminDashboard = () => {
             <Route path="/register-employee" element={<EmployeeAddForm />} />
             <Route path="/tasklist" element={<AdminTaskList />} />
             <Route path="/createtask" element={<CreateTaskForm />} />
+            <Route path="/leaverequest" element={<AllLeaveRequests />} />
           </Routes>
         </main>
       </div>

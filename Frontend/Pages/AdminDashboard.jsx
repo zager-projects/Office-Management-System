@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { primaryColor, secondaryColor } from '../Constants/theme';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import DashboardNavbar from '../Components/DashboardNavbar';
 import { NavLink, Routes, Route, useNavigate } from 'react-router-dom';
 import EmployeeAddForm from './EmployeeAddFrom';

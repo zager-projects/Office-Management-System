@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { primaryColor, secondaryColor } from '../Constants/theme';
 import Button from '../Components/Button';
-// import axios from 'axios';
+import { primaryColor, secondaryColor } from '../Constants/theme';
+
+
 
 
 function AdminLogin() {
@@ -57,7 +58,7 @@ function AdminLogin() {
     }
   return (
     <>
-        <div className='h-[10vh] flex items-center justify-between px-10'>        
+        <div className='h-[10vh] flex items-center justify-between px-10'>
         {/* <p className='uppercase font-bold text-[2vw]'><span style={{color:secondaryColor}}>Office</span> management system</p> */}
         <p className='uppercase font-bold text-3xl'><span style={{color:secondaryColor}}>O</span>ms <span style={{color:secondaryColor}}>l</span>ogin</p>
         <div className='flex md:gap-4 gap-2'>
@@ -97,7 +98,7 @@ function AdminLogin() {
               placeholder="Enter your ID"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 
@@ -110,7 +111,7 @@ function AdminLogin() {
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
             />
           </div>
 

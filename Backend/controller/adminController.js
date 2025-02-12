@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 
 // ✅ Admin Registration
 export const registerAdmin = async (req, res) => {
-  try { 
+  try {
     const { username, email, password } = req.body;
 
     // Check if admin already exists

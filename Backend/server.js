@@ -1,6 +1,7 @@
-import express from "express";
+import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import express from "express";
 import connectDB from "./config/db.js";
 import taskroutes from './routes/taskRoutes.js'
 import employeeRouter from './routes/employeeRoutes.js'
@@ -12,7 +13,6 @@ import attendanceRoutes from './routes/attendanceRoutes.js'
 
 dotenv.config();
 const app = express();
-
 // Connect Database
 connectDB();
 
@@ -32,11 +32,11 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/api/task", taskroutes);
-app.use("/api/employee",employeeRouter);
+app.use("/api/employee", employeeRouter);
 app.use("/api/admin", adminRoutes);
 app.use('/api/leave', leaveRoutes);
 app.use('/api/attendance', attendanceRoutes);
-
+app.use("/api/documents", fileRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

@@ -325,13 +325,18 @@ const EmployeeAddForm = () => {
           </div>
           <div>
             <label className="block text -sm font-medium text-gray-700">Role-based Access Level</label>
-            <input
-              type="text"
+            <select
               value={roleBasedAccessLevel}
               onChange={(e) => setRoleBasedAccessLevel(e.target.value)}
               required
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-purple-400"
-            />
+            >
+              <option value="">Select Role</option>
+              {/* <option value="Admin">Admin</option> */}
+              <option value="User">User</option>
+              <option value="Manager">Manager</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Account Status</label>

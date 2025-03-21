@@ -21,6 +21,7 @@ function AdminLogin() {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+    {/* Handle Submit function */}
       const handleSubmit = async (e) => {
         e.preventDefault();
 
